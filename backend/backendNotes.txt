@@ -1,0 +1,26 @@
+1. Generate JSON package
+    npm init -y 
+2. Install express cors mongoose dotenv
+    npm i express cors mongoose dotenv
+express - lažje delanje z GET, POST, PUT DELETE requesti
+cors -cross-origin resource sharing - za povezovanje strežnika z drugim strežnikom, drugače browser zavrne vsebino, ki jo je en strežnik posredoval preko drugega
+moongoose - lažje delanje z MongoDB
+dotenv - loads enviroment variables from .env to process.env 
+
+3. use nodemon
+
+XX. CODE
+
+server.js
+    require,
+    const app, port,
+    middleware,
+    connect MongoDB (+connection string in .env)
+    use(routers)
+
+    listen
+
+create models for MongoDB
+create routes for routing
+
+
