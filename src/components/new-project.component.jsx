@@ -1,3 +1,6 @@
+//TODO
+//Preveri edit, ko ni tokna
+
 import React, { Component } from 'react';
 import { useParams } from 'react-router-dom';
 

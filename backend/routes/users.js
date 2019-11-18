@@ -55,11 +55,7 @@ router.route('/authenticate').post((req, res) => {
   });
 });
 
-//GET all users - only if logged in -just to test tokens
-/* app.get('/api/secret', checkToken, function(req, res) {
-  res.send('The password is potato');
-}); */
-
+//check token
 const checkToken = require('../middleware/checkToken');
 
 router
