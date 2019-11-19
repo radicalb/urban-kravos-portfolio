@@ -9852,6 +9852,10 @@
 
   .require {
     color: #666;
+  }
+
+.input-vsm {
+  max-width: 100px;  
 }
   
 
