@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
+    "web": "node index.js",
     "heroku-postbuild": "npm install --prefix client npm && npm run build"
   },
   "keywords": [],
