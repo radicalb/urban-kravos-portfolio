@@ -42,10 +42,7 @@ app.use(
   '/static',
   express.static(path.join(__dirname, './client/build//static'))
 );
-app.use(
-  '/img',
-  express.static(path.join(__dirname, './client/resources//img'))
-);
+app.use('/img', express.static(path.join(__dirname, './resources//img')));
 
 app.get('*', function(req, res) {
   res.sendFile('index.html', { root: path.join(__dirname, './client/build/') });
