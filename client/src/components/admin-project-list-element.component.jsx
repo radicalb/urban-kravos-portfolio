@@ -5,7 +5,11 @@ class AdminProjectListElement extends Component {
     orderingId: this.props.project.orderingId
   };
   editUrl = '/editproject/' + this.props.project._id;
-  //deleteUrl = '/deleteproject/' + ;
+  deleteModal =
+    'deleteModal1' +
+    this.props.project.orderingId +
+    Math.floor(Math.random() * 1000 + 1);
+  deleteModalLink = '#' + this.deleteModal;
 
   handleOrderingIdChange = event => {
     const { value, name } = event.target;
@@ -78,11 +82,58 @@ class AdminProjectListElement extends Component {
           <button
             type="button"
             className="btn btn-warning"
-            onClick={() => this.props.onRemove(this.props.project._id)}
+            data-toggle="modal"
+            data-target={this.deleteModalLink}
           >
             Delete
           </button>
         </td>
+        <div
+          className="modal fade"
+          id={this.deleteModal}
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalCenterTitle"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLongTitle">
+                  Potrditev brisanja
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                Ali res želite izbrisati ta projekt?
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Prekliči
+                </button>
+                <button
+                  type="button"
+                  data-dismiss="modal"
+                  className="btn btn-primary"
+                  onClick={() => this.props.onRemove(this.props.project._id)}
+                >
+                  Izbriši
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </tr>
     );
   }
