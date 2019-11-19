@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "server": "nodemon index.js",
-    "heroku-postbuild": "npm install --prefix client"
+    "heroku-postbuild": "npm install --prefix client npm && npm run build"
   },
   "keywords": [],
   "author": "",
