@@ -1,12 +1,12 @@
 {
-  "name": "backend",
+  "name": "urban-kravos-portfolio",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
     "server": "nodemon index.js",
-    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "npm install --prefix client"
   },
   "keywords": [],
   "author": "",
