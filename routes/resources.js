@@ -6,7 +6,9 @@ const stream = require('stream');
 
 //confingure and import for Google API
 const { google } = require('googleapis');
-const credentials = require('../urban-kravos-portfolio-fcc52dfdfca6.json');
+//load credentials from env
+const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+//const credentials = require('../urban-kravos-portfolio-fcc52dfdfca6.json');
 const scopes = ['https://www.googleapis.com/auth/drive'];
 const auth = new google.auth.JWT(
   credentials.client_email,
@@ -14,22 +16,6 @@ const auth = new google.auth.JWT(
   credentials.private_key,
   scopes
 );
-
-//const secret = process.env.SECRET_TOKEN;
-
-/* const upload = multer({
-  storage: multerDrive(auth)
-  // Rest of multer's options
-}); */
-
-/* router
-  .use(upload.single('pFile'))
-  .route('/upload')
-  .post((req, res) => {
-    const filename = req.file.filename;
-    console.log(req);
-    res.status(200).send(filename);
-  }); */
 
 const drive = google.drive({ version: 'v3', auth });
 
