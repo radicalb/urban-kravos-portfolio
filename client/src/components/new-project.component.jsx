@@ -100,7 +100,8 @@ class NewProject extends Component {
       body: formData
     };
 
-    fetch('/api/project/upload', options)
+    //fetch('/api/project/upload', options)
+    fetch('/api/resources/upload', options)
       .then(res => {
         return res.text();
       })

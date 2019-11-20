@@ -115,4 +115,6 @@ router.route('/:id?').get((req, res) => {
   }
 });
 
+router.route('/test').get((req, res) => {});
+
 module.exports = router;

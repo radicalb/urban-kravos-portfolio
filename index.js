@@ -34,9 +34,11 @@ connection.once('open', err => {
 //routing
 const userRouter = require('./routes/users');
 const projectRouter = require('./routes/project');
+const resourcesRouter = require('./routes/resources');
 
 app.use('/api/users', userRouter);
 app.use('/api/project', projectRouter);
+app.use('/api/resources', resourcesRouter);
 
 app.use(
   '/static',
