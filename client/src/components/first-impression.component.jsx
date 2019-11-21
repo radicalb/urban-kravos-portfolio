@@ -1,4 +1,4 @@
-import React, { Component, ReactDOM } from 'react';
+import React, { Component, ReactDOM } from "react";
 
 class FirstImpression extends Component {
   state = {};
@@ -12,7 +12,7 @@ class FirstImpression extends Component {
         <div className="container d-flex align-items-center flex-column">
           <img
             className="masthead-avatar mb-5 rounded-circle border border-white"
-            src="img/circle-cropped.png"
+            src={require("../static_resources/img/circle-cropped.png")}
             alt=""
           ></img>
 
