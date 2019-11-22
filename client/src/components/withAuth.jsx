@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
-export default function withAuth(ComponentToProtect, redirectTo) {
+export default function withAuth(ComponentToProtect) {
   return class extends Component {
     constructor() {
       super();
@@ -12,6 +12,8 @@ export default function withAuth(ComponentToProtect, redirectTo) {
       };
     }
     componentDidMount() {
+      console.log('REDIRECTED FROM: ' + this.props.location.pathname);
+
       fetch('/api/users/checkToken')
         .then(res => {
           console.log(res);
@@ -33,7 +35,7 @@ export default function withAuth(ComponentToProtect, redirectTo) {
         return null;
       }
       if (redirect) {
-        let loginUrl = '/login' + redirectTo;
+        let loginUrl = '/login' + this.props.location.pathname;
         return <Redirect to={loginUrl} />;
       }
       return (

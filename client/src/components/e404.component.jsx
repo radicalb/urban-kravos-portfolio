@@ -18,8 +18,9 @@ class Error404 extends Component {
             <div className="divider-custom-line"></div>
           </div>
           <div className="row justify-content-center">
-            <div className="col-md-8 col-md-offset-2 text-left"></div>
-            <div>Oprostite, stran, ki ste jo iskali ne obstaja.</div>
+            <div className="col-md-8 col-md-offset-2 text-center">
+              <p>Oprostite, stran, ki ste jo iskali ne obstaja.</p>
+            </div>
           </div>
         </div>
       </section>

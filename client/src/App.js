@@ -26,15 +26,9 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/login" component={Login} />
-            <Route path="/admin" component={withAuth(Admin, '/admin')} />
-            <Route
-              path="/addproject"
-              component={withAuth(NewProject, '/addproject')}
-            />
-            <Route
-              path="/editproject/:id"
-              component={withAuth(NewProject, '/editproject')}
-            />
+            <Route path="/admin" component={withAuth(Admin)} />
+            <Route path="/addproject" component={withAuth(NewProject)} />
+            <Route path="/editproject/:id" component={withAuth(NewProject)} />
             <Route component={Error404} />
           </Switch>
         </Router>
