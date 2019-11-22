@@ -76,7 +76,7 @@ class Project extends Component {
                 </div>
                 <img
                   className={thumbImageClassName}
-                  src={this.props.project.img1}
+                  src={this.props.project.img1thumbnail}
                   alt=""
                 />
               </div>
@@ -95,7 +95,7 @@ class Project extends Component {
                 </div>
                 <img
                   className={thumbImageClassName}
-                  src={this.props.project.img2}
+                  src={this.props.project.img2thumbnail}
                   alt=""
                 />
               </div>
@@ -114,7 +114,7 @@ class Project extends Component {
                 </div>
                 <img
                   className={thumbImageClassName}
-                  src={this.props.project.img3}
+                  src={this.props.project.img3thumbnail}
                   alt=""
                 />
               </div>

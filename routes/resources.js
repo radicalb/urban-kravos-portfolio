@@ -52,7 +52,7 @@ router
           // if you want to store the file in the root, remove this parents
           //parents: ['Drive folder id in which the file needs to be uploaded.']
         },
-        fields: 'id, webContentLink'
+        fields: 'id, webContentLink, thumbnailLink'
       });
 
       drive.permissions
@@ -74,7 +74,12 @@ router
           console.log(error);
         });
 
-      res.status(200).send(resp.data.webContentLink);
+      res.status(200).json(
+        JSON.stringify({
+          webContentLink: resp.data.webContentLink,
+          thumbnailLink: resp.data.thumbnailLink
+        })
+      );
     }
   });
 

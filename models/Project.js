@@ -8,7 +8,10 @@ const ProjectSchema = new mongoose.Schema({
   img1: { type: String, required: true },
   img2: { type: String, required: true },
   img3: { type: String, required: true },
-  gitUrl: { type: String, required: true }
+  gitUrl: { type: String, required: true },
+  img1thumbnail: { type: String, required: false },
+  img2thumbnail: { type: String, required: false },
+  img3thumbnail: { type: String, required: false }
 });
 
 ProjectSchema.statics.getNexOrderingId = function getNexOrderingId(cb) {

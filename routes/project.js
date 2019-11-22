@@ -27,7 +27,17 @@ router
 
 // POST route to add project
 router.route('/add').post(async (req, res) => {
-  const { tittle, postBody, img1, img2, img3, gitUrl } = req.body;
+  const {
+    tittle,
+    postBody,
+    img1,
+    img2,
+    img3,
+    gitUrl,
+    img1thumbnail,
+    img2thumbnail,
+    img3thumbnail
+  } = req.body;
   let nextOrderingIdHolder = await Project.getNexOrderingId();
   let nextOrderingId = nextOrderingIdHolder[0].orderingId + 1;
   console.log(nextOrderingId);
@@ -39,7 +49,10 @@ router.route('/add').post(async (req, res) => {
     img1,
     img2,
     img3,
-    gitUrl
+    gitUrl,
+    img1thumbnail,
+    img2thumbnail,
+    img3thumbnail
   });
   project
     .save(err => {
@@ -76,7 +89,18 @@ router.route('/updatemany').post((req, res) => {
 // POST route to update project
 router.route('/update/:id').post((req, res) => {
   //console.log(req.body);
-  const { orderingId, tittle, postBody, img1, img2, img3, gitUrl } = req.body;
+  const {
+    orderingId,
+    tittle,
+    postBody,
+    img1,
+    img2,
+    img3,
+    gitUrl,
+    img1thumbnail,
+    img2thumbnail,
+    img3thumbnail
+  } = req.body;
   let id = req.params.id;
   console.log(id);
 
@@ -93,7 +117,17 @@ router.route('/update/:id').post((req, res) => {
   } else {
     Project.findByIdAndUpdate(
       id,
-      { tittle, postBody, img1, img2, img3, gitUrl },
+      {
+        tittle,
+        postBody,
+        img1,
+        img2,
+        img3,
+        gitUrl,
+        img1thumbnail,
+        img2thumbnail,
+        img3thumbnail
+      },
       err => {
         if (err) {
           console.log(err);

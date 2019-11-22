@@ -14,6 +14,9 @@ class NewProject extends Component {
       img2: '',
       img3: '',
       gitUrl: 'https://github.com/radicalb/',
+      img1thumbnail: '',
+      img2thumbnail: '',
+      img3thumbnail: '',
       img1fileKey: 'rKey1' + Date.now(),
       img2fileKey: 'rKey2' + Date.now(),
       img3fileKey: 'rKey3' + Date.now()
@@ -38,7 +41,10 @@ class NewProject extends Component {
                 img1: data.img1,
                 img2: data.img2,
                 img3: data.img3,
-                gitUrl: data.gitUrl
+                gitUrl: data.gitUrl,
+                img1thumbnail: data.img3thumbnail,
+                img2thumbnail: data.img3thumbnail,
+                img3thumbnail: data.img3thumbnail
               });
             });
           } else {
@@ -103,12 +109,19 @@ class NewProject extends Component {
     //fetch('/api/project/upload', options)
     fetch('/api/resources/upload', options)
       .then(res => {
-        return res.text();
+        return res.json();
       })
       .then(data => {
+        console.log(`Data from file upload:: ${data}`);
+
+        const theData = JSON.parse(data);
+        console.log(theData);
+
         const inputsName = name.slice(0, 4);
+        const InputsNameThumbnail = inputsName + 'thumbnail';
         this.setState({
-          [inputsName]: data
+          [inputsName]: theData.webContentLink,
+          [InputsNameThumbnail]: theData.thumbnailLink
         });
       });
   };
@@ -121,11 +134,31 @@ class NewProject extends Component {
   };
 
   handleAddProject = () => {
-    const { tittle, postBody, img1, img2, img3, gitUrl } = this.state;
+    const {
+      tittle,
+      postBody,
+      img1,
+      img2,
+      img3,
+      gitUrl,
+      img1thumbnail,
+      img2thumbnail,
+      img3thumbnail
+    } = this.state;
 
     const options = {
       method: 'POST',
-      body: JSON.stringify({ tittle, postBody, img1, img2, img3, gitUrl }),
+      body: JSON.stringify({
+        tittle,
+        postBody,
+        img1,
+        img2,
+        img3,
+        gitUrl,
+        img1thumbnail,
+        img2thumbnail,
+        img3thumbnail
+      }),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -144,7 +177,10 @@ class NewProject extends Component {
             gitUrl: 'https://github.com/radicalb/',
             img1fileKey: 'rKey1' + Date.now(),
             img2fileKey: 'rKey2' + Date.now(),
-            img3fileKey: 'rKey3' + Date.now()
+            img3fileKey: 'rKey3' + Date.now(),
+            img1thumbnail: '',
+            img2thumbnail: '',
+            img3thumbnail: ''
           });
           alert('Projekt uspešno dodan.');
         } else {
@@ -159,11 +195,31 @@ class NewProject extends Component {
   };
 
   handleEditProject = () => {
-    const { tittle, postBody, img1, img2, img3, gitUrl } = this.state;
+    const {
+      tittle,
+      postBody,
+      img1,
+      img2,
+      img3,
+      gitUrl,
+      img1thumbnail,
+      img2thumbnail,
+      img3thumbnail
+    } = this.state;
 
     const options = {
       method: 'POST',
-      body: JSON.stringify({ tittle, postBody, img1, img2, img3, gitUrl }),
+      body: JSON.stringify({
+        tittle,
+        postBody,
+        img1,
+        img2,
+        img3,
+        gitUrl,
+        img1thumbnail,
+        img2thumbnail,
+        img3thumbnail
+      }),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -244,6 +300,13 @@ class NewProject extends Component {
                     value={this.state.img1}
                     onChange={this.handleTextChange}
                   />
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="img1thumbnail"
+                    value={this.state.img1thumbnail}
+                    onChange={this.handleTextChange}
+                  />
                 </div>
 
                 <div className="form-group">
@@ -263,6 +326,13 @@ class NewProject extends Component {
                     value={this.state.img2}
                     onChange={this.handleTextChange}
                   />
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="img2thumbnail"
+                    value={this.state.img2thumbnail}
+                    onChange={this.handleTextChange}
+                  />
                 </div>
 
                 <div className="form-group">
@@ -280,6 +350,13 @@ class NewProject extends Component {
                     className="form-control"
                     name="img3"
                     value={this.state.img3}
+                    onChange={this.handleTextChange}
+                  />
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="img3thumbnail"
+                    value={this.state.img3thumbnail}
                     onChange={this.handleTextChange}
                   />
                 </div>

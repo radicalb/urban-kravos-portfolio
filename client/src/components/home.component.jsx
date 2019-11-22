@@ -15,8 +15,22 @@ class Home extends Component {
       .then(res => {
         if (res.status === 200) {
           res.json().then(data => {
-            this.setState({
+            /* this.setState({
               projects: data
+            }); */
+
+            let projects = [...data];
+            projects.map(project => {
+              //if no thumnails use full size pics
+              if (project.img1thumbnail === '' || !project.img1thumbnail)
+                project.img1thumbnail = project.img1;
+              if (project.img2thumbnail === '' || !project.img2thumbnail)
+                project.img2thumbnail = project.img2;
+              if (project.img3thumbnail === '' || !project.img3thumbnail)
+                project.img3thumbnail = project.img3;
+            });
+            this.setState({
+              projects
             });
           });
         } else {
