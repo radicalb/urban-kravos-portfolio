@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 
 class AdminProjectListElement extends Component {
-  state = {
+  /* state = {
     orderingId: this.props.project.orderingId
   };
-  editUrl = '/editproject/' + this.props.project._id;
-  deleteModal =
-    'deleteModal1' +
-    this.props.project.orderingId +
-    Math.floor(Math.random() * 1000 + 1);
-  deleteModalLink = '#' + this.deleteModal;
 
   handleOrderingIdChange = event => {
     const { value, name } = event.target;
@@ -17,8 +11,6 @@ class AdminProjectListElement extends Component {
     this.setState({
       [name]: value
     });
-
-    //console.log('--implement fetch update by id', this.state.orderingId);
   };
 
   handleOrderingIdOnKeyUp = event => {
@@ -53,12 +45,45 @@ class AdminProjectListElement extends Component {
         orderingId: this.props.project.orderingId
       });
     }
-  };
+  }; */
 
   render() {
+    let upButtonClassName = 'btn btn-sm btn-outline-primary';
+    if (this.props.project.orderingId >= this.props.nrOfProjects) {
+      upButtonClassName += 'disabled';
+    }
+
+    let downButtonClassName = 'btn btn-sm btn-outline-primary';
+    if (this.props.project.orderingId <= 1) {
+      downButtonClassName += 'disabled';
+    }
+
+    let editUrl = '/editproject/' + this.props.project._id;
+    let deleteModal =
+      'deleteModal1' +
+      this.props.project.orderingId +
+      Math.floor(Math.random() * 1000 + 1);
+    let deleteModalLink = '#' + deleteModal;
+
     return (
       <tr>
-        <td className="w-5">
+        <td>
+          <div class="btn-group-vertical">
+            <button
+              className={upButtonClassName}
+              onClick={() => this.props.onMoveUp(this.props.project)}
+            >
+              <i class="fas fa-angle-up"></i>
+            </button>
+            <button
+              className={downButtonClassName}
+              onClick={() => this.props.onMoveDown(this.props.project)}
+            >
+              <i class="fas fa-angle-down"></i>
+            </button>
+          </div>
+        </td>
+        {/* <td className="w-5">
           <input
             type="number"
             className="form-control input-sm input-vsm"
@@ -67,30 +92,34 @@ class AdminProjectListElement extends Component {
             onChange={this.handleOrderingIdChange}
             onKeyUp={this.handleOrderingIdOnKeyUp}
           />
-        </td>
-        <td className="w-70">
+        </td> */}
+        <td className="w-100">
           <div className="btn btn-secondary active w-100">
             {this.props.project.tittle}
+            <br />
+            <span class="badge badge-light">
+              {this.props.project.orderingId}
+            </span>
           </div>
         </td>
-        <td className="w-10">
-          <a role="button" href={this.editUrl} className="btn btn-primary">
-            Edit
-          </a>
-        </td>
-        <td className="w-15">
-          <button
-            type="button"
-            className="btn btn-warning"
-            data-toggle="modal"
-            data-target={this.deleteModalLink}
-          >
-            Delete
-          </button>
+        <td>
+          <div class="btn-group-vertical">
+            <a role="button" href={editUrl} className="btn btn-primary">
+              Edit
+            </a>
+            <button
+              type="button"
+              className="btn btn-warning"
+              data-toggle="modal"
+              data-target={deleteModalLink}
+            >
+              Delete
+            </button>
+          </div>
         </td>
         <div
           className="modal fade"
-          id={this.deleteModal}
+          id={deleteModal}
           tabindex="-1"
           role="dialog"
           aria-labelledby="exampleModalCenterTitle"
@@ -111,7 +140,7 @@ class AdminProjectListElement extends Component {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div className="modal-body">
+              <div className="modal-body text-center">
                 Ali res želite izbrisati ta projekt?
               </div>
               <div className="modal-footer">

@@ -53,6 +53,26 @@ router.route('/add').post(async (req, res) => {
     .catch(err => res.status(500).json(`Error ${err}`));
 });
 
+router.route('/updatemany').post((req, res) => {
+  projects = req.body.projects;
+  projects.map(project => {
+    //console.log(project.tittle + ' :orderingId:' + project.orderingId);
+    Project.findByIdAndUpdate(
+      project._id,
+      { orderingId: project.orderingId },
+      err => {
+        if (err) {
+          console.log(err);
+          res.status(500).send('Erorr, unable to update project order');
+          return;
+        }
+      }
+    );
+  });
+
+  res.status(200).send('TEST');
+});
+
 // POST route to update project
 router.route('/update/:id').post((req, res) => {
   //console.log(req.body);

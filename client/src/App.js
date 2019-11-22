@@ -8,6 +8,7 @@ import Login from './components/login';
 import withAuth from './components/withAuth';
 import Admin from './components/admin.component';
 import NewProject from './components/new-project.component';
+import Error404 from './components/e404.component';
 
 import 'bootstrap/dist/js/bootstrap';
 import './vendor/fontawesome-free/css/all.min.css';
@@ -34,6 +35,7 @@ class App extends Component {
               path="/editproject/:id"
               component={withAuth(NewProject, '/editproject')}
             />
+            <Route component={Error404} />
           </Switch>
         </Router>
         <BottomBar />

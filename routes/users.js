@@ -3,7 +3,8 @@ let User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const secret = process.env.SECRET_TOKEN;
 
-// POST route to register a user
+/* 
+// POST route to register a user --DISABLED
 router.route('/register').post((req, res) => {
   const { email, password } = req.body;
 
@@ -16,7 +17,7 @@ router.route('/register').post((req, res) => {
       res.status(200).send('Welcome to the club!');
     }
   });
-});
+}); */
 
 //POST route to authenticate user
 router.route('/authenticate').post((req, res) => {
