@@ -1,10 +1,10 @@
 const router = require('express').Router();
 let Project = require('../models/Project');
 const jwt = require('jsonwebtoken');
-var multer = require('multer');
+let multer = require('multer');
 const secret = process.env.SECRET_TOKEN;
 
-var storage = multer.diskStorage({
+let storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, './client/resources/img/projects');
   },
@@ -13,7 +13,7 @@ var storage = multer.diskStorage({
   }
 });
 
-var upload = multer({ storage: storage });
+let upload = multer({ storage: storage });
 
 // POST route to register a user
 router

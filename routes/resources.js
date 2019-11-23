@@ -2,6 +2,7 @@ const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const stream = require('stream');
+let Project = require('../models/Project');
 /* const multerDrive = require('multer-drive'); */
 
 //confingure and import for Google API
@@ -133,15 +134,34 @@ router.route('/updatethumbnailbyid/:fileid').get(async (req, res) => {
       fileId: fileId,
       pageSize: 1,
 
-      fields: 'files(thumbnailLink)'
+      fields: 'files(webContentLink, thumbnailLink)'
     },
-    (err, resp) => {
+    async (err, resp) => {
       if (err) {
         res.sendStatus(500);
         throw err;
       }
+      console.log(fileId + '::::');
       const thumbnailLink = resp.data.files[0].thumbnailLink;
-      if (thumbnailLink) {
+      const webContentLink = resp.data.files[0].webContentLink;
+      if (thumbnailLink && webContentLink) {
+        let r1 = await Project.updateMany(
+          { img1: webContentLink },
+          { $set: { img1thumbnail: thumbnailLink } }
+        );
+        console.log(r1.nModified);
+
+        let r2 = await Project.updateMany(
+          { img2: webContentLink },
+          { $set: { img2thumbnail: thumbnailLink } }
+        );
+        console.log(r2.nModified);
+        let r3 = await Project.updateMany(
+          { img3: webContentLink },
+          { $set: { img3thumbnail: thumbnailLink } }
+        );
+        console.log(r3.nModified);
+
         res.status(200).send(thumbnailLink);
       } else {
         res.sendStatus(400);

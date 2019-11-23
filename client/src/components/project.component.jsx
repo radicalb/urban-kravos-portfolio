@@ -6,10 +6,43 @@ class Project extends Component {
   state = {};
 
   handleInvalidThumbnail(event) {
-    event.onError = null; //to prevent infinite cycling if some error ocures with new img too
-    event.target.src = this.props.project.img1;
+    event.target.onError = null; //to prevent infinite cycling if some error ocures with new img too
+    console.log(event.target.name);
 
-    //implement fetch and update thumbnails
+    /*     switch (event.target.name) {
+      case 'img1':
+        event.target.src = this.props.project.img1;
+        break;
+      case 'img2':
+        event.target.src = this.props.project.img2;
+        break;
+      case 'img3':
+        event.target.src = this.props.project.img3;
+        break;
+      default:
+        event.target.src = this.props.project.img1;
+        console.log(this.getIdFromImgPath(this.props.project.img1));
+    } */
+
+    event.target.src = this.props.project[event.target.name];
+    const fileId = this.getIdFromImgPath(this.props.project[event.target.name]);
+    console.log(fileId);
+
+    fetch('/api/resources//updatethumbnailbyid/' + fileId).then(res => {
+      if (res.status === 200) {
+        res.text().then(thumbnailLink => {
+          console.log(thumbnailLink);
+          //if(thumbnailLink)
+          //event.target.source = thumbnailLink;
+        });
+      }
+    });
+  }
+
+  getIdFromImgPath(imgPath) {
+    return imgPath
+      .replace('https://drive.google.com/uc?id=', '')
+      .replace('&export=download', '');
   }
 
   render() {
@@ -86,6 +119,8 @@ class Project extends Component {
                   className={thumbImageClassName}
                   src={this.props.project.img1thumbnail}
                   alt=""
+                  onError={this.handleInvalidThumbnail.bind(this)}
+                  name="img1"
                 />
               </div>
             </div>
@@ -106,6 +141,7 @@ class Project extends Component {
                   src={this.props.project.img2thumbnail}
                   alt=""
                   onError={this.handleInvalidThumbnail.bind(this)}
+                  name="img2"
                 />
               </div>
             </div>
@@ -125,6 +161,8 @@ class Project extends Component {
                   className={thumbImageClassName}
                   src={this.props.project.img3thumbnail}
                   alt=""
+                  onError={this.handleInvalidThumbnail.bind(this)}
+                  name="img3"
                 />
               </div>
             </div>
