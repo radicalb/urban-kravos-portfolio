@@ -4,6 +4,14 @@ import ProjectsModal from './projects-modal.component';
 
 class Project extends Component {
   state = {};
+
+  handleInvalidThumbnail(event) {
+    event.onError = null; //to prevent infinite cycling if some error ocures with new img too
+    event.target.src = this.props.project.img1;
+
+    //implement fetch and update thumbnails
+  }
+
   render() {
     let sectionClassname;
     let h2className;
@@ -97,6 +105,7 @@ class Project extends Component {
                   className={thumbImageClassName}
                   src={this.props.project.img2thumbnail}
                   alt=""
+                  onError={this.handleInvalidThumbnail.bind(this)}
                 />
               </div>
             </div>

@@ -124,4 +124,30 @@ router.route('/test').get((req, res) => {
   );
 } */
 
+router.route('/updatethumbnailbyid/:fileid').get(async (req, res) => {
+  let fileId = req.params.fileid;
+
+  let resp = await drive.files.list(
+    {
+      auth: auth,
+      fileId: fileId,
+      pageSize: 1,
+
+      fields: 'files(thumbnailLink)'
+    },
+    (err, resp) => {
+      if (err) {
+        res.sendStatus(500);
+        throw err;
+      }
+      const thumbnailLink = resp.data.files[0].thumbnailLink;
+      if (thumbnailLink) {
+        res.status(200).send(thumbnailLink);
+      } else {
+        res.sendStatus(400);
+      }
+    }
+  );
+});
+
 module.exports = router;
