@@ -42,8 +42,8 @@ class NewProject extends Component {
                 img2: data.img2,
                 img3: data.img3,
                 gitUrl: data.gitUrl,
-                img1thumbnail: data.img3thumbnail,
-                img2thumbnail: data.img3thumbnail,
+                img1thumbnail: data.img1thumbnail,
+                img2thumbnail: data.img2thumbnail,
                 img3thumbnail: data.img3thumbnail
               });
             });

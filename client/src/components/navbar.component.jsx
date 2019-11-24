@@ -1,3 +1,9 @@
+/* 
+TODO
+
+- Logout
+*/
+
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import MediaQuery from 'react-responsive';

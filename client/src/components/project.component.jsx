@@ -26,6 +26,7 @@ class Project extends Component {
     } */
 
     event.target.src = this.props.project[event.target.name];
+    //console.log(this.props.project[event.target.name]);
 
     const options = {
       method: 'POST'

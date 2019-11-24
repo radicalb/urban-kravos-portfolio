@@ -116,6 +116,9 @@ router.route('/updateallthumbnails').get(async (req, res) => {
               file => file.webContentLink === project.img3
             );
 
+            /* console.log(fileImg1.thumbnailLink);
+            console.log(fileImg2.thumbnailLink);
+            console.log(fileImg3.thumbnailLink); */
             console.log('Project: ' + project._id + ' updating thumbnails.');
 
             Project.findByIdAndUpdate(
