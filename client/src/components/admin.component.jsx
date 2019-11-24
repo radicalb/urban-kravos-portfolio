@@ -166,7 +166,7 @@ class Admin extends Component {
           <div className="row justify-content-center">
             <div className="col-md-8 col-md-offset-2">
               <a className="btn btn-primary" role="button" href="/addproject">
-                Dodaj projekt
+                Add project
               </a>
 
               <table className="w-100 h-100 text-right">

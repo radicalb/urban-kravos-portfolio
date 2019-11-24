@@ -42,32 +42,43 @@ export default class Login extends Component {
 
   render() {
     return (
-      <section
-        className="masthead bg-primary text-white text-center"
-        id="page-top"
-      >
-        <div className="container d-flex align-items-center flex-column">
-          Login
-          <form onSubmit={this.onSubmit}>
-            <h1>Login Below!</h1>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter email"
-              value={this.state.email}
-              onChange={this.handleInputChange}
-              required
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter password"
-              value={this.state.password}
-              onChange={this.handleInputChange}
-              required
-            />
-            <input type="submit" value="Submit" />
-          </form>
+      <section className="page-section portfolio" id="aboutme">
+        <div className="container">
+          <h2 className="page-section-heading text-center text-uppercase text-secondary mb-0">
+            About
+          </h2>
+
+          <div className="divider-custom">
+            <div className="divider-custom-line"></div>
+            <div className="divider-custom-icon">
+              <i className="fas fa-star"></i>
+            </div>
+            <div className="divider-custom-line"></div>
+          </div>
+
+          <div className="row">
+            <div className="col-lg-10 mx-auto">
+              <form onSubmit={this.onSubmit}>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter email"
+                  value={this.state.email}
+                  onChange={this.handleInputChange}
+                  required
+                />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Enter password"
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                  required
+                />
+                <input type="submit" value="Submit" />
+              </form>
+            </div>
+          </div>
         </div>
       </section>
     );

@@ -10,7 +10,7 @@ class NextProjectButton extends Component {
           onClick={this.props.onClick}
         >
           <i className="fas fa-angle-down mr-2"></i>
-          Naslednji projekt
+          Next project
         </button>
       </div>
     );

@@ -52,7 +52,7 @@ class NavBar extends Component {
                     aria-label="Toggle navigation"
                     onClick={() => this.handleClick('aboutme')}
                   >
-                    O meni
+                    About
                   </a>
                 </li>
               </MediaQuery>
@@ -62,7 +62,7 @@ class NavBar extends Component {
                     className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                     href="#aboutme"
                   >
-                    O meni
+                    About
                   </a>
                 </li>
               </MediaQuery>
@@ -78,7 +78,7 @@ class NavBar extends Component {
                     aria-label="Toggle navigation"
                     onClick={() => this.handleClick('projects')}
                   >
-                    Moji projekti
+                    My projects
                   </a>
                 </li>
               </MediaQuery>
@@ -88,7 +88,7 @@ class NavBar extends Component {
                     className="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
                     href="#projects"
                   >
-                    Moji projekti
+                    My projects
                   </a>
                 </li>
               </MediaQuery>

@@ -65,7 +65,7 @@ class NewProject extends Component {
         className="btn btn-success"
         onClick={this.handleAddProject}
       >
-        Dodaj projekt
+        Add new project
       </button>
     );
   }
@@ -77,7 +77,7 @@ class NewProject extends Component {
         className="btn btn-success"
         onClick={this.handleEditProject}
       >
-        Shrani spremembe
+        Save changes
       </button>
     );
   }
@@ -182,7 +182,7 @@ class NewProject extends Component {
             img2thumbnail: '',
             img3thumbnail: ''
           });
-          alert('Projekt uspešno dodan.');
+          alert('Project added succesfully.');
         } else {
           const error = new Error(res.error);
           throw error;
@@ -246,7 +246,7 @@ class NewProject extends Component {
       <section className="page-section portfolio" id="newProject">
         <div className="container">
           <h2 className="page-section-heading text-center text-uppercase text-secondary mb-0">
-            Dodaj projekt
+            Add/edit project
           </h2>
 
           <div className="divider-custom">
@@ -387,7 +387,7 @@ class NewProject extends Component {
                     role="button"
                     className="btn btn-warning pull-right"
                   >
-                    Nazaj
+                    Back to admin page
                   </a>
                 </div>
               </form>

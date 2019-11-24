@@ -19,7 +19,7 @@ class Error404 extends Component {
           </div>
           <div className="row justify-content-center">
             <div className="col-md-8 col-md-offset-2 text-center">
-              <p>Oprostite, stran, ki ste jo iskali ne obstaja.</p>
+              <p>Page not found.</p>
             </div>
           </div>
         </div>

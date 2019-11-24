@@ -7,7 +7,7 @@ class Aboutme extends Component {
       <section className="page-section portfolio" id="aboutme">
         <div className="container">
           <h2 className="page-section-heading text-center text-uppercase text-secondary mb-0">
-            O meni
+            About
           </h2>
 
           <div className="divider-custom">
@@ -21,23 +21,23 @@ class Aboutme extends Component {
           <div className="row">
             <div className="col-lg-10 mx-auto">
               <p className="lead">
-                Pozdravljeni, sem Urban Kravos, dipl. inž. računalništva in
-                informatike. V prostem času se ukvarjam s programiranjem. Dobro
-                poznam programske jezike C#, Java, JavaScript, HTML5 in CSS3.
-                Imam pa tudi omejeno znanje Phytona in VB. Poznane so mi tako
-                relacijske kot nerelacijske podatkovne baze. Včasih sem se
-                veliko ukvarjal tudi z Delphijem.
+                Hello, I'm Urban Kravos, Bachelor of Computer and Informational
+                Science. In my spare time I like to develop desktop and web
+                apps. I am well versed in C#, Java, JavaScript, HTML and CSS. I
+                also have limited knowledge of Phyton and VB. I am familiar with
+                both relational and nonrelational databases. In old days I used
+                to deal a lot with Delphi too.
               </p>
               <p className="lead">
-                V zadnjem času sem pridobil nekaj znanja iz ReactJS freameworka
-                in Bootstrapa. V službi sem trenutno ukvarjam z avtomatizacijo
-                izdelave Powerpoint poročil iz Sharepoint seznamov preko Excela
-                (VBA).
+                Recently, I gained some knowledge from React framework and
+                Bootstrap. I was dealing a lot with automatic creation of
+                PowerPoint reports from SharePoint lists using Excel (VBA)
+                lately.
               </p>
 
               <p className="lead">
-                Spodaj si lahko ogledate nekaj mojih projektov. Želim vam
-                prijetno brskanje.
+                You can see some of my projects below. I wish you a pleasant
+                experience. Feel free to contact me if you have any questions.
               </p>
             </div>
           </div>

@@ -129,7 +129,7 @@ class AdminProjectListElement extends Component {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLongTitle">
-                  Potrditev brisanja
+                  Delete confirmation
                 </h5>
                 <button
                   type="button"
@@ -141,7 +141,7 @@ class AdminProjectListElement extends Component {
                 </button>
               </div>
               <div className="modal-body text-center">
-                Ali res želite izbrisati ta projekt?
+                Do you really want to delete this project?
               </div>
               <div className="modal-footer">
                 <button
@@ -149,7 +149,7 @@ class AdminProjectListElement extends Component {
                   className="btn btn-secondary"
                   data-dismiss="modal"
                 >
-                  Prekliči
+                  Cancel
                 </button>
                 <button
                   type="button"
@@ -157,7 +157,7 @@ class AdminProjectListElement extends Component {
                   className="btn btn-primary"
                   onClick={() => this.props.onRemove(this.props.project._id)}
                 >
-                  Izbriši
+                  Delete
                 </button>
               </div>
             </div>

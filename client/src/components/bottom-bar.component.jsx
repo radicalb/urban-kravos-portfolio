@@ -9,12 +9,12 @@ class BottomBar extends Component {
           <div className="container">
             <div className="row">
               <div className="col-lg-4 mb-5 mb-lg-0">
-                <h4 className="lead mb-4">e-pošta:</h4>
+                <h4 className="lead mb-4">e-mail:</h4>
                 <p className="lead mb-0">urban.rbsoftware@gmail.com</p>
               </div>
 
               <div className="col-lg-4 mb-5 mb-lg-0">
-                <h4 className="text-uppercase mb-4">Kontakt</h4>
+                <h4 className="text-uppercase mb-4">Contact</h4>
                 <a
                   className="btn btn-outline-light btn-social mx-1"
                   href="https://www.facebook.com/radicalb"
@@ -42,7 +42,7 @@ class BottomBar extends Component {
               </div>
 
               <div className="col-lg-4">
-                <h4 className="lead mb-4">telefon:</h4>
+                <h4 className="lead mb-4">phone:</h4>
                 <p className="lead mb-0">040-166-123</p>
               </div>
             </div>
