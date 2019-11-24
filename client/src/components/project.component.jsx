@@ -3,11 +3,12 @@ import NextProjectButton from './next-project-button.component';
 import ProjectsModal from './projects-modal.component';
 
 class Project extends Component {
-  state = {};
+  state = {
+    updatingTumbnails: false
+  };
 
   handleInvalidThumbnail(event) {
     event.target.onError = null; //to prevent infinite cycling if some error ocures with new img too
-    console.log(event.target.name);
 
     /*     switch (event.target.name) {
       case 'img1':
@@ -25,25 +26,22 @@ class Project extends Component {
     } */
 
     event.target.src = this.props.project[event.target.name];
-    const fileId = this.getIdFromImgPath(this.props.project[event.target.name]);
-    console.log(fileId);
 
-    fetch('/api/resources//updatethumbnailbyid/' + fileId).then(res => {
-      if (res.status === 200) {
-        res.text().then(thumbnailLink => {
-          console.log(thumbnailLink);
-          //if(thumbnailLink)
-          //event.target.source = thumbnailLink;
-        });
-      }
-    });
+    const options = {
+      method: 'POST'
+    };
+
+    if (!this.state.updatingTumbnails) {
+      this.setState({ updatingTumbnails: true });
+      fetch('/api/resources/updateallthumbnails');
+    }
   }
 
-  getIdFromImgPath(imgPath) {
+  /*   getIdFromImgPath(imgPath) {
     return imgPath
       .replace('https://drive.google.com/uc?id=', '')
       .replace('&export=download', '');
-  }
+  } */
 
   render() {
     let sectionClassname;

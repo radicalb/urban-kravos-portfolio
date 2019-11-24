@@ -3,13 +3,17 @@ const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const stream = require('stream');
 let Project = require('../models/Project');
-/* const multerDrive = require('multer-drive'); */
+
+//flags
+let resourcesFlags = {
+  updatingThumbnails: false
+};
 
 //confingure and import for Google API
 const { google } = require('googleapis');
 //load credentials from env
 const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
-//const credentials = require('../urban-kravos-portfolio-fcc52dfdfca6.json');
+
 const scopes = ['https://www.googleapis.com/auth/drive'];
 const auth = new google.auth.JWT(
   credentials.client_email,
@@ -27,12 +31,11 @@ const upload = multer({
   }
 });
 
+//upload file to google drive and return webLink+thumbnailLink
 router
   .use(upload.single('pFile'))
   .route('/upload')
   .post(async (req, res) => {
-    //console.log(req);
-
     let fileObject = req.file;
 
     if (!fileObject) {
@@ -84,90 +87,69 @@ router
     }
   });
 
-router.route('/test').get((req, res) => {
-  drive.files.list(
-    {
-      pageSize: 1,
-      fields: '*'
-    },
-    (err, res) => {
-      if (err) throw err;
-      const files = res.data.files;
-      if (files.length) {
-        files.map(file => {
-          console.log(file);
+//update all thumbnails (request from client/projects.component - unable to load thumbnails)
+router.route('/updateallthumbnails').get(async (req, res) => {
+  console.log('/updateallthumbnails');
+  if (!resourcesFlags.updatingThumbnails) {
+    resourcesFlags.updatingThumbnails = true;
+
+    let resp = await drive.files.list(
+      {
+        auth: auth,
+        fields: 'files(webContentLink, thumbnailLink)'
+      },
+      (err, resp) => {
+        if (err) {
+          res.sendStatus(500);
+          throw err;
+        }
+
+        Project.find({}, (err, projects) => {
+          projects.map(project => {
+            fileImg1 = resp.data.files.find(
+              file => file.webContentLink === project.img1
+            );
+            fileImg2 = resp.data.files.find(
+              file => file.webContentLink === project.img2
+            );
+            fileImg3 = resp.data.files.find(
+              file => file.webContentLink === project.img3
+            );
+
+            console.log('Project: ' + project._id + ' updating thumbnails.');
+
+            Project.findByIdAndUpdate(
+              project._id,
+              {
+                img1thumbnail: fileImg1.thumbnailLink,
+                img2thumbnail: fileImg2.thumbnailLink,
+                img3thumbnail: fileImg3.thumbnailLink
+              },
+              err => {
+                if (err) {
+                  console.log(err);
+                  res
+                    .status(500)
+                    .send('Erorr, unable to update project thumbnails');
+                  return;
+                }
+              }
+            );
+          });
         });
-      } else {
-        console.log('No files found');
       }
-    }
-  );
-  res.sendStatus(200);
+    );
+    resourcesFlags.updatingThumbnails = false;
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(200);
+  }
 });
 
-/* function getWebViewLinkByName(name) {
-  drive.files.list(
-    {
-      pageSize: 1,
-      fields: 'files(name, webViewLink)',
-      orderBy: 'createdTime desc',
-      q: (name = '1574246456785-jde2.png')
-    },
-    (err, res) => {
-      if (err) throw err;
-      const files = res.data.files;
-      if (files.length) {
-        return files[0].webViewLink;
-      } else {
-        return 'No files found';
-      }
-    }
-  );
-} */
-
-router.route('/updatethumbnailbyid/:fileid').get(async (req, res) => {
-  let fileId = req.params.fileid;
-
-  let resp = await drive.files.list(
-    {
-      auth: auth,
-      fileId: fileId,
-      pageSize: 1,
-
-      fields: 'files(webContentLink, thumbnailLink)'
-    },
-    async (err, resp) => {
-      if (err) {
-        res.sendStatus(500);
-        throw err;
-      }
-      console.log(fileId + '::::');
-      const thumbnailLink = resp.data.files[0].thumbnailLink;
-      const webContentLink = resp.data.files[0].webContentLink;
-      if (thumbnailLink && webContentLink) {
-        let r1 = await Project.updateMany(
-          { img1: webContentLink },
-          { $set: { img1thumbnail: thumbnailLink } }
-        );
-        console.log(r1.nModified);
-
-        let r2 = await Project.updateMany(
-          { img2: webContentLink },
-          { $set: { img2thumbnail: thumbnailLink } }
-        );
-        console.log(r2.nModified);
-        let r3 = await Project.updateMany(
-          { img3: webContentLink },
-          { $set: { img3thumbnail: thumbnailLink } }
-        );
-        console.log(r3.nModified);
-
-        res.status(200).send(thumbnailLink);
-      } else {
-        res.sendStatus(400);
-      }
-    }
-  );
-});
+function getIdFromImgPath(imgPath) {
+  return imgPath
+    .replace('https://drive.google.com/uc?id=', '')
+    .replace('&export=download', '');
+}
 
 module.exports = router;

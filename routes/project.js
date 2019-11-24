@@ -15,7 +15,8 @@ let storage = multer.diskStorage({
 
 let upload = multer({ storage: storage });
 
-// POST route to register a user
+/* 
+// POST route to upload file in img/projects -- REPLACE BY upload to Google drive (resources/upload) 
 router
   .use(upload.single('pFile'))
   .route('/upload')
@@ -23,7 +24,7 @@ router
     const filename = 'img/projects/' + req.file.filename;
     console.log(filename);
     res.status(200).send(filename);
-  });
+  }); */
 
 // POST route to add project
 router.route('/add').post(async (req, res) => {
@@ -66,6 +67,7 @@ router.route('/add').post(async (req, res) => {
     .catch(err => res.status(500).json(`Error ${err}`));
 });
 
+//POST route to update multiple projects - used for reordering projects in admin
 router.route('/updatemany').post((req, res) => {
   projects = req.body.projects;
   projects.map(project => {
@@ -86,7 +88,7 @@ router.route('/updatemany').post((req, res) => {
   res.status(200).send('TEST');
 });
 
-// POST route to update project
+// POST route to update single project by id
 router.route('/update/:id').post((req, res) => {
   //console.log(req.body);
   const {
@@ -168,7 +170,5 @@ router.route('/:id?').get((req, res) => {
       .catch(err => res.status(400).json(`Error ${err}`));
   }
 });
-
-router.route('/test').get((req, res) => {});
 
 module.exports = router;

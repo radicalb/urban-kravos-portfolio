@@ -12,11 +12,11 @@ export default function withAuth(ComponentToProtect) {
       };
     }
     componentDidMount() {
-      console.log('REDIRECTED FROM: ' + this.props.location.pathname);
+      //console.log('REDIRECTED FROM: ' + this.props.location.pathname);
 
       fetch('/api/users/checkToken')
         .then(res => {
-          console.log(res);
+          //console.log(res);
           if (res.status === 200) {
             this.setState({ loading: false });
           } else {

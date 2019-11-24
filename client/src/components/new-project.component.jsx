@@ -24,16 +24,16 @@ class NewProject extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match);
-    console.log(this.props.match.params);
+    //console.log(this.props.match);
+    //console.log(this.props.match.params);
     if (this.props.match.params.id) {
       fetch('/api/project/' + this.props.match.params.id)
         .then(res => {
           if (res.status === 200) {
             res.json().then(data => {
-              console.log(data);
+              //console.log(data);
               const { _id } = data;
-              console.log(_id);
+              //console.log(_id);
 
               this.setState({
                 tittle: data.tittle,
@@ -112,10 +112,10 @@ class NewProject extends Component {
         return res.json();
       })
       .then(data => {
-        console.log(`Data from file upload:: ${data}`);
+        //console.log(`Data from file upload:: ${data}`);
 
         const theData = JSON.parse(data);
-        console.log(theData);
+        //console.log(theData);
 
         const inputsName = name.slice(0, 4);
         const InputsNameThumbnail = inputsName + 'thumbnail';
@@ -166,7 +166,7 @@ class NewProject extends Component {
 
     fetch('/api/project/add', options)
       .then(res => {
-        console.log('RESPONSE FROM SERVER:');
+        //console.log('RESPONSE FROM SERVER:');
         if (res.status === 200) {
           this.setState({
             tittle: '',
@@ -227,7 +227,7 @@ class NewProject extends Component {
 
     fetch('/api/project/update/' + this.props.match.params.id, options)
       .then(res => {
-        console.log('RESPONSE FROM SERVER:');
+        //console.log('RESPONSE FROM SERVER:');
         if (res.status === 200) {
           alert('Projekt uspešno posodobljen.');
         } else {

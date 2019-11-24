@@ -44,7 +44,7 @@ class Home extends Component {
   }
 
   handleShowMoreProjects = () => {
-    console.log('handling show more projects');
+    //console.log('handling show more projects');
     let projectsDisplayed = this.state.projectsDisplayed;
     projectsDisplayed++;
     this.setState({ projectsDisplayed });
